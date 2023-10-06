@@ -4,6 +4,7 @@ beautifulsoup4
 uvicorn
 cachetools
 certifi
+fastapi
 pymongo
 charset-normalizer
 click
