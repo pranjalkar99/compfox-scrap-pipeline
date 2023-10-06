@@ -13,4 +13,4 @@ RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 # Set the entrypoint command to run your FastAPI app
-CMD ["uvicorn", "pipeline_website_api:app", "--host", "0.0.0.0"]
+CMD ["uvicorn", "pipeline_website_api:app", "--host", "0.0.0.0","--port","8080"]

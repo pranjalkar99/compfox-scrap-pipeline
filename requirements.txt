@@ -1,6 +1,7 @@
 anyio
 aspose-words
 beautifulsoup4
+uvicorn
 cachetools
 certifi
 pymongo
