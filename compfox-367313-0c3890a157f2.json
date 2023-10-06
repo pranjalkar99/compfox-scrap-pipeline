@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "compfox-367313",
+  "private_key_id": "0c3890a157f26d31680648b447c955e9b7232e5e",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQC7C3s1C4QXRlxF\noaiaBxXjl+1iyifOqSugghC7GglQd9Ni3u78b4p2Z+wEFiCFh07ic+oWo/y72PrU\nfRTw3iIX5s6yevMIE37a+4KynowbOeAmQjxPAbrAq6cuBiWLco7f0Ew59ronix8H\nRymnfzvUZDpVwpHm2eKAZhfRf1bDTap/pfMTsz0xSpjPPL67+W8AMSoQZ3yvFywE\nDwMAghtfMr/tEylMUqBa8vsYxRFaGJKK/Fqq2ZVnvuaLVAyqEJpmWzLPk4atY45+\ngHd7n3HZJqDxsPy/zDw5JOclqNBM5AAz6c4yr7rct5zTrkK1qA4mQ/QY+hv7tJHt\nNGV4Jh6hAgMBAAECggEAS/nPa44Icx3Q6DXQkvQy13ZEZh7gSYkc3/9FBYL/apCp\nrB0K7T3ve8Ydr9E/F44NJF3aJaUpyTHLPRmrsmVAav4FUqkvY8Xrfs6v2ZceKQb6\nvf+kmKEGtzFiYIb9pCV91Hq7I8ZM+jf//AhTaqZ7anvl2CUG98LkRqxxm1bCquSD\nmpa1hkWNXWQsYInAGIx03YKrnoAgMZWO1AKH6mTQ03JY45zXSe2Kn6bUuCZi0cq8\nU890N5bywVGEJO89qP5mw40Lu/JYWeDIWfFxcsimhs5eWhsf+trEJJRN3DiVE7gP\nqcvlcVBY0QOkCUI11g34FypSj1XLYE8UysCDD46BuwKBgQD4dxlGKjjROzkP76Gn\nh9ozZNrHn+FSWfOJPPJm2uXEjJmk2K/n7AWIZEjh7Q6SNEQ4sCY6Qw6Pbum83uma\nJo+C52ne0oHCUBsD4cYArIa7OVTbHfZJDB1DNABi7439kzhA4VJ4Vi9+tmVRlgUb\nRx81EaR7+H4ZReCQCPOV4TQUYwKBgQDAt49VVpQO8xPNNk7s7QpACRs4vrNFN/0c\nxiCdsifiXM1UoETvXhw09e8bz4qFIKttG179jyDc72kZ0ihO0vTYS7PDrSd/cJF6\nCmJaQ7sqGLxBBXn4sl0XgGUaOdxSWYgr9CLHgQn7iqSLbGBF+fzKKfGhuOF/c54x\nEBjsPyAmKwKBgQDR+/2tMePA2JdaI4BwUL0VMEhB65oG+iR7OLn4OUl0OgtjqQnJ\nLMxkP7Tk0268G1YIvr4gASoeCHOb/pxYffxNenwcJ7YoXYDnX/jx+t0G/+X6JTFO\n/OECOcGV27UZuEETfBoxv0z2fvnT4MDCE/KI7Dch2pnfjBHESPxsD97u1wKBgQCX\n+CgvQ3a90zFqQck7TDEpDgVJWhhEHUKbziEqObL57fR9J2U03SGhIc7MP30cPgbw\nowTlLljb4G8gzXi7r98kMY4wX/slo78UXdvxEjglmhvZqlfkpcKDJdyUMcxro+6d\nuocyi68zjMD0sSG6DMgrI6hHv2MS/jlgtzDwG1dewQKBgQDKpRd+D/q9uZ5EdeiI\nSE1qOYLMPIwB+UQDSUS6r5uSLadoMd6zfufD/+scCHl7mG+nf4pHLNOAXugzB1pw\nGzGFc0FIXGoeOHBfKh/gr00NOzgXteF5bODsJmM5ihqDZgdNVgz48eKi0RgvLvdW\n/DRWxo4rc38RAicduC1a8/TTpw==\n-----END PRIVATE KEY-----\n",
+  "client_email": "compfox-pipeline@compfox-367313.iam.gserviceaccount.com",
+  "client_id": "103946742676432861762",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/compfox-pipeline%40compfox-367313.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
