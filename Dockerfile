@@ -8,7 +8,8 @@ WORKDIR /app
 COPY . .
 
 RUN pip install --upgrade pip
-
+# Set the System.Globalization.Invariant flag (Note: This won't apply to Python)
+ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=true
 # Install the Python dependencies
 RUN pip install -r requirements.txt
 

@@ -3,7 +3,7 @@ import logging
 import requests
 import shutil
 from bs4 import BeautifulSoup
-from fastapi import FastAPI
+from fastapi import FastAPI, BackgroundTasks
 from pymongo.mongo_client import MongoClient
 # from pylogger import Logger  # This import is commented out because it's not used in the provided code
 import pytest  # This import is commented out because it's not used in the provided code
@@ -73,13 +73,8 @@ def clean_temp_output_folder():
 
 statuses = []
 
-@pipe.get("/")
-async def root_message():
-    return {"message": "Go to /docs for the API documentation."}
 
-
-@pipe.get("/start-batch")
-async def start_batch(limit_pdf: int = 10):
+def process_batch(limit_pdf: int = 10):
     try:
         clean_pdfs_folder()
         clean_temp_output_folder()
@@ -149,6 +144,21 @@ async def start_batch(limit_pdf: int = 10):
     except Exception as e:
         logging.warning("MAJOR BATCH PROBLEM:----->",e)
         return {"message": "Some error occured, check logs."}
+
+
+@pipe.get("/")
+async def root_message():
+    return {"message": "Go to /docs for the API documentation."}
+
+
+@pipe.get("/start-batch")
+async def startbatch(background_tasks: BackgroundTasks, limit_pdf:int = 10):
+
+    background_tasks.add_task(process_batch, limit_pdf)
+    logging.info("Batch started--> ")
+
+    return {"message": "Batch processing has been scheduled."}
+
 
 @pipe.get("/get-status")
 async def get_batch_status():
