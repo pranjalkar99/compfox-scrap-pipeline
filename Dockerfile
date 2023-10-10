@@ -6,13 +6,14 @@ WORKDIR /app
 
 # Copy everything in the current directory to the container
 COPY . .
+# Install libssl1.0.0 from a specific URL
+RUN wget http://archive.ubuntu.com/ubuntu/pool/main/o/openssl1.0/libssl1.0.0_1.0.2n-1ubuntu5_amd64.deb
+RUN dpkg -i libssl1.0.0_1.0.2n-1ubuntu5_amd64.deb
 
 # Upgrade pip and install required packages
 RUN pip install --upgrade pip setuptools && \
-    apt-get update && apt-get install -y libssl-dev && \
     pip install -r requirements.txt
 
-RUN apt-get update && apt-get install -y libssl-dev
 # Set the System.Globalization.Invariant flag (Note: This won't apply to Python)
 ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=true
 
