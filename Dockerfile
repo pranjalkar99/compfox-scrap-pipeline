@@ -8,6 +8,10 @@ WORKDIR /app
 COPY . .
 
 RUN pip install --upgrade pip
+RUN pip install --upgrade pip setuptools
+RUN sudo apt-get install libssl-dev
+
+
 # Set the System.Globalization.Invariant flag (Note: This won't apply to Python)
 ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=true
 # Install the Python dependencies

@@ -154,7 +154,7 @@ async def root_message():
 @pipe.get("/start-batch")
 async def startbatch(limit_pdf:int = 10):
 
-    process_batch(limit_pdf)
+    await process_batch(limit_pdf)
     logging.info("Batch started--> ")
 
     return {"message": "Batch processing has been scheduled."}
