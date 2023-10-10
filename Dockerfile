@@ -7,15 +7,13 @@ WORKDIR /app
 # Copy everything in the current directory to the container
 COPY . .
 
-RUN pip install --upgrade pip
-RUN pip install --upgrade pip setuptools
-RUN sudo apt-get install libssl-dev
-
+# Upgrade pip and install required packages
+RUN pip install --upgrade pip setuptools && \
+    apt-get update && apt-get install -y libssl-dev && \
+    pip install -r requirements.txt
 
 # Set the System.Globalization.Invariant flag (Note: This won't apply to Python)
 ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=true
-# Install the Python dependencies
-RUN pip install -r requirements.txt
 
 # Set the entrypoint command to run your FastAPI app
-CMD ["uvicorn", "pipeline_without_bg:pipe", "--host", "0.0.0.0","--port","8080"]
+CMD ["uvicorn", "your_fastapi_app:pipe", "--host", "0.0.0.0", "--port", "8080"]
