@@ -12,6 +12,7 @@ RUN pip install --upgrade pip setuptools && \
     apt-get update && apt-get install -y libssl-dev && \
     pip install -r requirements.txt
 
+RUN apt-get update && apt-get install -y libssl-dev
 # Set the System.Globalization.Invariant flag (Note: This won't apply to Python)
 ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=true
 
