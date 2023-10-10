@@ -14,4 +14,4 @@ ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=true
 RUN pip install -r requirements.txt
 
 # Set the entrypoint command to run your FastAPI app
-CMD ["uvicorn", "pipeline_new:pipe", "--host", "0.0.0.0","--port","8080"]
+CMD ["uvicorn", "pipeline_without_bg:pipe", "--host", "0.0.0.0","--port","8080"]
