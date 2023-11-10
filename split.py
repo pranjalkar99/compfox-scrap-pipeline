@@ -38,6 +38,20 @@ def upload_file(file_path, user_id):
     else:
         return f'Request failed with status code {response}'
 
+def extract_text_from_pdf(file_path):
+    pdf_file_obj = open(file_path, 'rb')
+    pdf_reader = PyPDF2.PdfFileReader(pdf_file_obj)
+    num_pages = pdf_reader.numPages
+    text = ""
+    for page in range(num_pages):
+        page_obj = pdf_reader.getPage(page)
+        text += page_obj.extractText()
+    pdf_file_obj.close()
+    return text
+
+
+
+
 ## asking the question from pdf
 def ask_question(user_id, query):
     url = f'https://compfox-ai.onrender.com/askqa/{user_id}'
@@ -55,6 +69,20 @@ def ask_question(user_id, query):
         return res['answer']
     else:
         return f'Request failed with status code {response}'
+    
+
+## Asking question until no error
+def ask_until_question(user_id, query):
+    count_try=0
+    answer = ask_question(user_id, query)
+    while "does not answer" or "no " in answer.lower() and count_try<3:
+        count_try+=1
+        print("Asking again", query)
+        answer = ask_question(user_id, query)
+    answer = "" if "doesn't know" in answer.lower() else answer
+    return answer
+
+
 ## func to get the file name from file_path
 
 def simple_filename(pathfile):
@@ -68,7 +96,7 @@ def make_batch(folder_path, output_folder):
     # Get all files in the source folder
     source_files = os.listdir(folder_path)
 
-    for file_name in tqdm(source_files, desc="asking question to pdf"):
+    for file_name in tqdm(source_files, desc="asking question to pdf for --> {file_name}"):
         # Check if the file is a PDF
         
         if file_name.endswith(".pdf"):
@@ -80,15 +108,20 @@ def make_batch(folder_path, output_folder):
             temp_dict = {}
             if 'successfully' in response_data['filename']:
                 temp_dict['id'] = id
-                temp_dict['applicant'] = ask_question(id, "name of applicant")
-                temp_dict['defendant'] = ask_question(id, "name of defendant")
+                temp_dict['applicant'] = ask_until_question(id, "what is the name of applicant")
+                temp_dict['defendant'] = ask_until_question(id, "what is the name of defendant")
                 temp_dict['date'] = ask_question(id, "date of case")
-                temp_dict['case_number'] = ask_question(id, "what is the case number")
-                temp_dict['district'] = ask_question(id, "name of the district office")
-                temp_dict['decision'] = ask_question(id, "what is the final decision")
-                temp_dict['case_name'] = ask_question(id, "what is the name of the case")
-                temp_dict['section_codes'] = ask_question(id, "name the section codes in the case")
-                temp_dict['references'] = ask_question(id, "name the references in the case")
+                temp_dict['case_number'] = ask_until_question(id, "what is the case number/adjucation number")
+                temp_dict['district'] = ask_until_question(id, "write the name of the district office")
+                temp_dict['decision'] = ask_until_question(id, "what is the final decision of the case")
+                temp_dict['case_name'] = ask_until_question(id, "write the name of the case")
+                temp_dict['section_codes'] = ask_until_question(id, "name the section codes in the case")
+                temp_dict['references'] = ask_until_question(id, "name the references in the case")
+                temp_dict['summary'] = ask_question(id, "write a small summary of the case")
+                try:
+                    temp_dict['text'] = extract_text_from_pdf(file_path)
+                except Exception:
+                    temp_dict['text'] = ""
                 temp_dict['gs_util'] = "gs://{}/{}".format(gcs_new_input_bucket, simple_filename(file_path))
             pdf = PdfReader(file_path)
             total_pages = len(pdf.pages)
