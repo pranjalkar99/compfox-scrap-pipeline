@@ -75,7 +75,7 @@ def ask_question(user_id, query):
 def ask_until_question(user_id, query):
     count_try=0
     answer = ask_question(user_id, query)
-    while "does not answer" or "no " in answer.lower() and count_try<3:
+    while "does not answer" or "no " in answer.lower() or count_try<3:
         count_try+=1
         print("Asking again", query)
         answer = ask_question(user_id, query)
@@ -120,8 +120,10 @@ def make_batch(folder_path, output_folder):
                 temp_dict['summary'] = ask_question(id, "write a small summary of the case")
                 try:
                     temp_dict['text'] = extract_text_from_pdf(file_path)
+                    temp_dict['seo_keywords'] = ask_question(id, "write 5 seo keywords for the case")
                 except Exception:
                     temp_dict['text'] = ""
+                    temp_dict['seo_keywords'] = ""
                 temp_dict['gs_util'] = "gs://{}/{}".format(gcs_new_input_bucket, simple_filename(file_path))
             pdf = PdfReader(file_path)
             total_pages = len(pdf.pages)
