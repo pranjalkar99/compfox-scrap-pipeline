@@ -73,14 +73,22 @@ def ask_question(user_id, query):
 
 ## Asking question until no error
 def ask_until_question(user_id, query):
-    count_try=0
+    count_try = 0
     answer = ask_question(user_id, query)
-    while "does not answer" or "no " in answer.lower() or count_try<3:
-        count_try+=1
-        print("Asking again", query)
-        answer = ask_question(user_id, query)
+    
+    while "does not answer" in answer.lower() or "no " in answer.lower():
+        if count_try < 3:
+            count_try += 1
+            print("Asking again", query)
+            answer = ask_question(user_id, query)
+        else:
+            print("Tried Three times, but no result, so quitting")
+            answer = ""
+            break
+            
     answer = "" if "doesn't know" in answer.lower() else answer
     return answer
+
 
 
 ## func to get the file name from file_path
