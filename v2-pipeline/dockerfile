@@ -1,0 +1,23 @@
+# Use the official Python image from the Docker Hub
+FROM python:3.11
+
+# Set the working directory to /app
+WORKDIR /app
+
+# Copy the requirements.txt file to the container
+COPY requirements.txt /app/
+
+# Install project dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the rest of the application code
+COPY . /app/
+
+# Expose the port the app runs on
+EXPOSE 8000
+
+# Define environment variable
+ENV PYTHONUNBUFFERED 1
+
+# Command to run your application
+CMD ["uvicorn", "v2_pipeline.main:pipe", "--host", "0.0.0.0", "--port", "8000"]
